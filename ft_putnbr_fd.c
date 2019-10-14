@@ -6,7 +6,7 @@
 /*   By: ygeslin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 14:11:08 by ygeslin           #+#    #+#             */
-/*   Updated: 2019/10/10 14:19:49 by ygeslin          ###   ########.fr       */
+/*   Updated: 2019/10/14 13:47:37 by ygeslin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@ void	ft_putnbr_fd(int nb, int fd)
 	int r;
 	int t;
 
+	t = 0;
 	if (nb == -2147483648)
 		write(fd, &"-2147483648", 11);
 	else
 	{
 		if (nb >= 0)
 			t = nb;
-		else if (nb < 0)
+		else
 		{
 			write(fd, "-", 1);
 			t = -nb;

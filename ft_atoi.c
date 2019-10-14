@@ -6,13 +6,13 @@
 /*   By: ygeslin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 14:05:18 by ygeslin           #+#    #+#             */
-/*   Updated: 2019/10/09 19:13:51 by ygeslin          ###   ########.fr       */
+/*   Updated: 2019/10/14 10:36:29 by ygeslin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_tnrvfrr(char *str)
+int	ft_tnrvfrr(const char *str)
 {
 	int i;
 

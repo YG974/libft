@@ -6,7 +6,7 @@
 /*   By: ygeslin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 16:30:00 by ygeslin           #+#    #+#             */
-/*   Updated: 2019/10/08 16:53:05 by ygeslin          ###   ########.fr       */
+/*   Updated: 2019/10/14 14:42:24 by ygeslin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ void		*ft_memchr(const void *ptr, int c, size_t n)
 			return (tmp + i);
 		i++;
 	}
-	return (NULL);
+	return (0);
 }
