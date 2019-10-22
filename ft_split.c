@@ -6,87 +6,85 @@
 /*   By: ygeslin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 13:50:15 by ygeslin           #+#    #+#             */
-/*   Updated: 2019/10/14 13:48:02 by ygeslin          ###   ########.fr       */
+/*   Updated: 2019/10/20 22:17:03 by ygeslin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		str_is_charset(char const *str, char c)
+static void	*free_tab(char **tab)
 {
-	if (str[0] == c)
-		return (1);
-	return (0);
+	int n;
+
+	n = 0;
+	while (tab[n])
+		free(tab[n++]);
+	free(tab);
+	return (NULL);
 }
 
-int		ft_tab_size(char const *str, char c)
+static char	**new_tab(char **tab, char *str)
 {
-	int i;
-	int tab_size;
+	char	**new_tab;
+	int		n;
 
-	i = 0;
-	tab_size = 0;
-	while (str[i])
-	{
-		if (!str_is_charset(&c, str[i]))
-			tab_size++;
-		while (!str_is_charset(&c, str[i]) && str[i])
-			i++;
-		while (str_is_charset(&c, str[i]) && str[i])
-			i++;
-	}
-	return (tab_size);
-}
-
-char	*ft_strcpy(char *dest, char const *src, int pos, int str_len)
-{
-	int i;
-
-	i = 0;
-	while (pos + i < str_len)
-	{
-		dest[i] = src[pos + i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
-
-char	**ft_tab_strs(int tab_size)
-{
-	char **tab_strs;
-
-	if (!(tab_strs = malloc(sizeof(char*) * (tab_size + 1))))
+	n = 0;
+	while (tab[n])
+		n++;
+	if (!(new_tab = calloc(sizeof(char **), n + 2)))
 		return (NULL);
-	tab_strs[tab_size] = NULL;
-	return (tab_strs);
+	n = 0;
+	while (tab[n])
+	{
+		new_tab[n] = tab[n];
+		n++;
+	}
+	free(tab);
+	new_tab[n] = str;
+	new_tab[n + 1] = NULL;
+	return (new_tab);
 }
 
-char	**ft_split(char const *str, char c)
+static char	*get_str(const char *s, size_t *i, char c)
 {
-	int		i;
-	int		str_nb;
-	int		str_len;
-	char	**tab;
+	char	*str;
+	size_t	n;
 
-	i = 0;
-	str_nb = 0;
-	tab = ft_tab_strs(ft_tab_size(str, c));
-	while (str[i])
+	n = 0;
+	while (s[*i + n] && s[*i + n] != c)
+		n++;
+	if (!(str = ft_calloc(sizeof(char), n + 1)))
+		return (NULL);
+	n = 0;
+	while (s[*i + n] && s[*i + n] != c)
 	{
-		str_len = 0;
-		while (!str_is_charset(&c, str[i + str_len]) && str[i + str_len])
-			str_len++;
-		if (str_len)
-		{
-			if (!(tab[str_nb] = (char*)malloc(sizeof(char) * (str_len + 1))))
-				return (NULL);
-			tab[str_nb] = ft_strcpy(tab[str_nb], str, i, i + str_len);
-			str_nb++;
-		}
-		while (str_is_charset(&c, str[i + str_len]))
+		str[n] = s[*i + n];
+		n++;
+	}
+	str[n] = '\0';
+	*i = *i + n;
+	return (str);
+}
+
+char		**ft_split(char const *s, char c)
+{
+	char		**tab;
+	char		*str;
+	size_t		i;
+
+	if (!s || !(tab = ft_calloc(sizeof(char **), 1)))
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
 			i++;
-		i = i + str_len;
+		else
+		{
+			if (!(str = get_str(s, &i, c)))
+				return (free_tab(tab));
+			tab = new_tab(tab, str);
+		}
 	}
 	return (tab);
 }

@@ -6,13 +6,13 @@
 /*   By: ygeslin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 14:05:18 by ygeslin           #+#    #+#             */
-/*   Updated: 2019/10/14 10:36:29 by ygeslin          ###   ########.fr       */
+/*   Updated: 2019/10/17 10:45:25 by ygeslin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_tnrvfrr(const char *str)
+static int	ft_tnrvfrr(const char *str)
 {
 	int i;
 
@@ -27,7 +27,7 @@ int	ft_tnrvfrr(const char *str)
 	return (i);
 }
 
-int	ft_atoi(const char *str)
+int			ft_atoi(const char *str)
 {
 	int pos_nb;
 	int sign;

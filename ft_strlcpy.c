@@ -6,7 +6,7 @@
 /*   By: ygeslin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:57:46 by ygeslin           #+#    #+#             */
-/*   Updated: 2019/10/09 17:38:14 by ygeslin          ###   ########.fr       */
+/*   Updated: 2019/10/17 20:24:04 by ygeslin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 
 	i = 0;
 	size_src = 0;
+	if (!(dest || src))
+		return (size_src);
 	while (src[size_src] != '\0')
 	{
 		++size_src;

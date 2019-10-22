@@ -1,38 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ygeslin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/07 14:09:07 by ygeslin           #+#    #+#             */
-/*   Updated: 2019/10/17 10:45:16 by ygeslin          ###   ########.fr       */
+/*   Created: 2019/10/17 15:46:38 by ygeslin           #+#    #+#             */
+/*   Updated: 2019/10/18 14:08:26 by ygeslin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_strcpy(char *dest, const char *src)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	int i;
+	t_list	*ptr;
+	t_list	*tmp;
 
-	i = 0;
-	while (src[i] != '\0')
+	ptr = *lst;
+	while (ptr)
 	{
-		dest[i] = src[i];
-		i++;
+		tmp = ptr->next;
+		ft_lstdelone(ptr, del);
+		ptr = tmp;
 	}
-	dest[i] = '\0';
-	return (dest);
-}
-
-char		*ft_strdup(const char *src)
-{
-	char	*dest;
-
-	dest = (char*)malloc(sizeof(*src) * (ft_strlen(src) + 1));
-	if (dest == NULL)
-		return (dest);
-	dest = ft_strcpy(dest, src);
-	return (dest);
+	*lst = NULL;
 }

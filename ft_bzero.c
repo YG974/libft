@@ -6,7 +6,7 @@
 /*   By: ygeslin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 16:28:37 by ygeslin           #+#    #+#             */
-/*   Updated: 2019/10/08 15:07:03 by ygeslin          ###   ########.fr       */
+/*   Updated: 2019/10/22 16:19:30 by ygeslin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void		ft_bzero(void *ptr, size_t n)
 {
-	char *tmp;
+	unsigned char *tmp;
 
-	tmp = (char *)ptr;
+	tmp = (unsigned char *)ptr;
 	while (n > 0)
 	{
 		tmp[n - 1] = '\0';
